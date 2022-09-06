@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row" style="margin-top: 1%; ">
+    {% for sentence in sentences %}
+        <div class="col-4">
+            <div class="text-white bg-info textbox">{{ sentence.content }}</div>
+            <div style="padding: 5pt; justify-content: center; width: 100%;">
+                <div style="display: flex; justify-content: right; height: 100%; flex-wrap: wrap;">
+                    <form action="." method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="text" value="{{ sentence.content }}" style="display:none;">
+                        <button type="submit" class="btn btn-success text-dark" style="margin: 2pt;">
+                            <i class="fa fa-play" aria-hidden="true"></i>
+                            Speech
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

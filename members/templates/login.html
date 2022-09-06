@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row" style="display: flex; text-align: center; justify-content: center;">
+        <form method="POST" class="form-horizontal col-xs-12 col-sm-8 col-lg-4">
+            <h1 for="Login"> Đăng nhập</h1>
+            {% csrf_token %}
+            {% for key, value in form.errors.items %}
+                {{ value }}
+            {% endfor %}
+            <div class="row form-group">
+                <label class="control-label col-sm-4">Tài khoản:</label>
+                <div class="col-sm-8">
+                    {{ form.username }}
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="control-label col-sm-4">Mật khẩu:</label>
+                <div class="col-sm-8">
+                    {{ form.password }}
+                </div>
+            </div>
+
+            <input type="hidden" name="next" value="/"/>
+            <input type="submit" value="Đăng nhập"/>
+        </form>
+    </div>
+{% endblock %}

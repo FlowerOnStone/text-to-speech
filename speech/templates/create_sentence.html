@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row" style="display: flex; text-align: center; justify-content: center;">
+        <form method="POST" action="." class="form-horizontal col-xs-12 col-sm-10 col-lg-6">
+            <h1> Tạo câu thoại mới</h1>
+            {% csrf_token %}
+            <div class="row form-group" style="text-align: left; justify-content: center;">
+                <label class="control-label col-sm-4">Cuộc hội thoại:</label>
+                <label class="control-label col-sm-8">{{ current_section_name }}</label>
+            </div>
+            <div class="row form-group" style="text-align: left; justify-content: center;">
+                <label class="control-label col-sm-4">Nội dung câu thoại</label>
+                <div class="col-sm-8">
+                    {{form.content}}
+                </div>
+            </div>
+            <input type="hidden" name="next" value="/"/>
+            <button type="submit" class="btn btn-success">Tạo mới</button>
+        </form>
+    </div>
+{% endblock %}

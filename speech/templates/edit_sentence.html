@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row" style="display: flex; text-align: center; justify-content: center;">
+        <form method="POST" action="{% url 'update_sentence' %}"  class="form-horizontal col-xs-12 col-sm-10 col-lg-6">
+            <h1 for="Login"> Sửa câu thoại</h1>
+            {% csrf_token %}
+            <div class="row form-group" style="text-align: left; justify-content: center;">
+                <label class="control-label col-sm-4">Cuộc hội thoại</label>
+                <label class="control-label col-sm-8">{{ paragraph.section.section_name }}</label>
+            </div>
+            <div class="row form-group" style="text-align: left; justify-content: center;">
+                <label class="control-label col-sm-4">Tên cuộc hội thoại</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="10" name="content">{{ paragraph.content }}</textarea>
+                </div>
+            </div>
+            <input type="hidden" name="id" value="{{ paragraph.id }}">
+            <a href="{% url 'view_section' paragraph.section.id %}">
+                <button type="button" class="btn btn-warning">Quay lại</button>
+            </a>
+            <button type="submit" class="btn btn-success">Lưu</button>
+        </form>
+    </div>
+{% endblock %}

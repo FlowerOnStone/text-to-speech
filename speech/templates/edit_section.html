@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row" style="display: flex; text-align: center; justify-content: center;">
+        <form method="POST" action="{% url 'update_section' %}"  class="form-horizontal col-xs-12 col-sm-10 col-lg-6">
+            <h1> Chỉnh sửa cuộc hội thoại</h1>
+            {% csrf_token %}
+            <div class="row form-group" style="text-align: left; justify-content: center;">
+                <label class="control-label col-sm-4">Tên cuộc hội thoại</label>
+                <div class="col-sm-8">
+                    <input type="text" name="section_name" class="form-control" value="{{ section.section_name }}">
+                </div>
+            </div>
+            <input type="text" style="display: none" name="id" value="{{ section.id }}">
+            <input type="hidden" name="next" value="/"/>
+            <a href="{% url 'view_section' section.id %}">
+                <button type="button" class="btn btn-warning">Quay lại</button>
+            </a>
+            <button type="submit" class="btn btn-success"> Lưu </button>
+        </form>
+    </div>
+{% endblock %}
