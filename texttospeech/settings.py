@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-t#tgtacav67f30i=s$90m#=wqj@-@m)p(_&qd-2+pu)tyu438m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["talk.blife.ai"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
