@@ -1,18 +1,57 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="row" style="justify-content: center; text-align: center; display: flex;">
-        <form action="/" class="form-group" style="margin: 5%; width: 60%; text-align: right;" method="POST">
+        <form action="/" class="form-group col-xs-12 col-sm-10 col-lg-6" id="speech-form" style="margin: 5%; text-align: right;" method="POST">
             {% csrf_token %}
-            <textarea class="form-control" rows="10" id="comment" name="text">{{ paragraph }}</textarea>
-            <button type="reset" value="Reset" class="btn btn-danger" style="margin: 2pt;">
+            <button type="reset" value="Reset" id="reset-message" class="btn btn-danger" style="margin: 2pt;">
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 Clear
             </button>
-            <button type="submit" class="btn btn-success" style="margin: 2pt;">
+            <button type="submit" class="btn btn-primary" style="margin: 2pt;">
                 <i class="fa fa-play" aria-hidden="true"></i>
                 Speech
             </button>
+            <textarea class="form-control" rows="5" id="content" name="text" aut>{{ paragraph }}</textarea>
+            <input type="hidden" name="add">
+            <br />
         </form>
+        <script>
+            document.getElementById("reset-message").addEventListener('click', e => {
+                document.getElementById("content").value = "";
+            })
+            document.getElementById("content").addEventListener("keydown", e => {
+                if (e.keyCode === 13) {
+                    document.getElementById("speech-form").submit();
+                }
+            })
+        </script>
+    </div>
+    {% for sentence in latest_sentences %}
+    <div class="row" style="justify-content: center; text-align: center; display: flex;">
+        <div class="col-xs-12 col-sm-10 col-lg-6 row" style="display: block">
+            <div style="padding: 5pt; justify-content: center; width: 100%;">
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="text" value="{{ sentence.content }}" style="display:none;">
+                    <button type="submit" class="btn btn-info text-white col-12" style="margin: 2pt;">
+                        <i class="fa fa-play" aria-hidden="true"></i>
+                        {{ sentence.content }}
+                    </button>
+                </form>
+            </div>
+        </div>
+        <br />
+    </div>
+    {% endfor %}
+    <div class="row" style="justify-content: center; text-align: center; display: flex;">
+        <div class="col-6" style="justify-content: right; text-align: center; display:flex;">
+            <a href="{% url 'clear_index_history' %}">
+                <button type="button"  class="btn btn-danger text-white">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Clear hístory
+                </button>
+            </a>
+        </div>
     </div>
 {% endblock %}
 

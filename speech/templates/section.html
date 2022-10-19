@@ -2,19 +2,19 @@
 {% block content %}
     <div class="row" style="margin-top: 1%; ">
     {% for sentence in sentences %}
-        <div class="col-4">
+        <div class="col-xs-12 col-sm-10 col-lg-6">
             <div class="text-white bg-info textbox">{{ sentence.content }}</div>
             <div style="padding: 5pt; justify-content: center; width: 100%;">
                 <div style="display: flex; justify-content: right; height: 100%; flex-wrap: wrap;">
                     <div style="margin: 1pt">
                         <a href="{% url 'delete_sentence' sentence.id %}">
-                            <button class="btn btn-danger text-dark">
+                            <button class="btn btn-danger text-white">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                 Delete
                             </button>
                         </a>
                         <a href="{% url 'edit_sentence' sentence.id %}">
-                            <button class="btn btn-success text-dark">
+                            <button class="btn btn-secondary text-white">
                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                 Edit
                             </button>
@@ -23,7 +23,7 @@
                     <form action="." method="POST">
                         {% csrf_token %}
                         <input type="text" name="text" value="{{ sentence.content }}" style="display:none;">
-                        <button class="btn btn-success text-dark" style="margin: 2pt;">
+                        <button class="btn btn-primary text-white" style="margin: 2pt;">
                             <i class="fa fa-play" aria-hidden="true"></i>
                             Speech
                         </button>
@@ -34,20 +34,20 @@
     {% endfor %}
     </div>
     <div class="row" style="display: flex; text-align: right; justify-content: right;">
-        <a href="{% url 'delete_section' id %}">
-            <button type="button"  class="btn btn-danger text-dark">
+        <a href="{% url 'delete_section' id %}" style="margin: 5px">
+            <button type="button"  class="btn btn-danger text-white">
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 Delete section
             </button>
         </a>
-        <a href="{% url 'edit_section' id %}">
-            <button type="button" class="btn btn-success text-dark">
+        <a href="{% url 'edit_section' id %}" style="margin: 5px">
+            <button type="button" class="btn btn-secondary text-white">
                 <i class="fa fa-edit" aria-hidden="true"></i>
                 Edit section
             </button>
         </a>
-        <a href="{% url 'create_sentence' id %}">
-            <button class="btn btn-success text-dark">
+        <a href="{% url 'create_sentence' id %}" style="margin: 5px">
+            <button class="btn btn-primary text-white">
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 New sentence
             </button>
