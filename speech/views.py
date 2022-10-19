@@ -69,7 +69,6 @@ def index(request):
         if len(tmp) == 20:
             break
     latest_sentences = tmp
-    print(tmp)
     context = {
         "paragraph": paragraph,
         "media_url": get_media_url(request),
