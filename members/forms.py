@@ -1,6 +1,7 @@
 from django import forms
 import re
 from django.contrib.auth.models import User
+from speech.models import Section
 
 
 class RegistrationmForm(forms.Form):
@@ -39,3 +40,5 @@ class RegistrationmForm(forms.Form):
         User.objects.create_user(username=self.cleaned_data['username'],
                                  email=self.cleaned_data['email'],
                                  password=self.cleaned_data['password1'])
+        Section.objects.create(username=User.objects.get(username=self.cleaned_data['username']),
+                               section_name="hidden_section").save()

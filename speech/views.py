@@ -19,6 +19,8 @@ def get_random_filename():
 def get_media_url(request):
     if "text" in request.POST:
         paragraph = request.POST["text"]
+        if paragraph == "":
+            return ""
         language = 'vi'
         myobj = gTTS(text=paragraph, lang=language, slow=False)
         filename = get_random_filename() + ".mp3"
