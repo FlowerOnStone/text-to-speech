@@ -7,6 +7,7 @@ import random
 import string
 from .forms import CreateSectionForm, CreateSentenceForm
 from django.urls import reverse
+from django.conf import settings
 
 
 # Create your views here.
@@ -24,7 +25,7 @@ def get_media_url(request):
         language = 'vi'
         myobj = gTTS(text=paragraph, lang=language, slow=False)
         filename = get_random_filename() + ".mp3"
-        myobj.save(os.path.join('media', filename))
+        myobj.save(os.path.join(settings.MEDIA_ROOT, filename))
         return '/media/' + filename
     return ""
 
